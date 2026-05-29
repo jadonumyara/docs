@@ -1,0 +1,100 @@
+---
+title: "المقتطفات القابلة لإعادة الاستخدام"
+description: "أنشئ مقتطفات MDX قابلة لإعادة الاستخدام لمشاركة النصوص والمكوّنات والمتغيّرات عبر الصفحات حتى تتمكّن من تحديث المحتوى المشترك من ملف مصدر واحد."
+icon: "recycle"
+---
+
+أي محتوى تجد نفسك تكرّره عبر الصفحات يُعدّ مرشّحًا جيدًا لمقتطف. أنشئ الملف مرة واحدة في دليل `snippets/`، واستورده أينما احتجت إليه، وستنتشر التحديثات في كل مكان تلقائيًا.
+
+<Note>
+  لا تُعرض الملفات داخل `snippets/` كصفحات مستقلة. تظهر فقط حيث تستوردها.
+</Note>
+
+## مقتطفات المحتوى
+
+النمط الأبسط: اكتب محتوى MDX في ملف مقتطف واستورده كمكوّن.
+
+```mdx snippets/prerequisites.mdx
+Before you begin, make sure you have:
+- Node.js 18 or higher
+- An API key from your [dashboard](https://dashboard.example.com)
+```
+
+استورده إلى أي صفحة باستخدام مسار نسبي من الجذر:
+
+```mdx your-page.mdx
+---
+title: Install the SDK
+---
+
+import Prerequisites from '/snippets/prerequisites.mdx';
+
+<Prerequisites />
+
+## Installation
+...
+```
+
+يمكنك أيضًا استخدام الاستيرادات النسبية، مما يتيح التنقل بـ CMD+click إلى المقتطف في محرّرك:
+
+```mdx
+import Prerequisites from '../snippets/prerequisites.mdx';
+```
+
+## مقتطفات المتغيّرات
+
+صدّر ثوابت مسمّاة من ملف مقتطف لإعادة استخدام قيم مثل أسماء المنتجات أو أرقام الإصدارات أو الروابط.
+
+```mdx snippets/vars.mdx
+export const sdkVersion = '3.2.0';
+export const baseUrl = 'https://api.example.com/v1';
+```
+
+استوردها واستخدمها مضمّنة:
+
+```mdx your-page.mdx
+import { sdkVersion, baseUrl } from '/snippets/vars.mdx';
+
+The current SDK version is **{sdkVersion}**.
+
+All requests go to `{baseUrl}`.
+```
+
+## مقتطفات المكوّنات
+
+بالنسبة للمقتطفات التي تحتاج إلى أن تختلف بناءً على مكان استخدامها، صدّر مكوّن دالة سهمية يقبل props.
+
+```mdx snippets/endpoint-note.mdx
+export const EndpointNote = ({ method, path }) => (
+  <Note>
+    This guide covers the <code>{method} {path}</code> endpoint.
+    See the <a href="/api-reference/introduction">API reference</a> for full details.
+  </Note>
+);
+```
+
+* استخدم بنية الدالة السهمية (`const Foo = () => ...`).
+* الكلمة المفتاحية `function` غير مدعومة في ملفات المقتطفات.
+* لا يتم تجميع بنية MDX داخل أجسام الدوال السهمية. استخدم وسوم HTML العادية هناك، أو استخدم تصديرًا افتراضيًا بدلاً من ذلك.
+
+مرّر props عند عرضه:
+
+```mdx your-page.mdx
+import { EndpointNote } from '/snippets/endpoint-note.mdx';
+
+<EndpointNote method="POST" path="/v1/users" />
+```
+
+## المقتطفات التي تستورد مقتطفات
+
+يمكن للمقتطفات استيراد مقتطفات أخرى، وهو أمر مفيد لتأليف أقسام مشتركة أكبر من قطع أصغر.
+
+```mdx snippets/auth-intro.mdx
+import AuthNote from '/snippets/auth-note.mdx';
+
+## Authentication
+
+All endpoints require a bearer token.
+
+<AuthNote />
+```

@@ -1,0 +1,81 @@
+---
+title: "بدء سريع"
+description: "ثبّت Mintlify، واستنسخ مستودع البدء، وحرّر صفحتك الأولى، وانشر موقع التوثيق الخاص بك على رابط مباشر في غضون دقائق."
+icon: 'rocket'
+---
+
+## ابدأ في ثلاث خطوات
+
+اجعل موقع التوثيق الخاص بك يعمل محليًا وقم بإجراء أول تخصيص لك.
+
+### الخطوة 1: إعداد بيئتك المحلية
+
+<AccordionGroup>
+  <Accordion icon="copy" title="استنساخ وثائقك محليًا">
+    خلال عملية الإعداد، أنشأت مستودع GitHub يحتوي على محتوى وثائقك إن لم يكن لديك واحد بالفعل. يمكنك العثور على رابط لهذا المستودع في [لوحة التحكم](https://dashboard.mintlify.com).
+    
+    لاستنساخ المستودع محليًا حتى تتمكن من إجراء تغييرات ومعاينتها على وثائقك، اتبع دليل [استنساخ مستودع](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) في وثائق GitHub.
+  </Accordion>
+  <Accordion icon="rectangle-terminal" title="تشغيل خادم المعاينة">
+    1. ثبّت Mintlify CLI: `npm i -g mint`
+    2. انتقل إلى دليل وثائقك ونفّذ: `mint dev`
+    3. افتح `http://localhost:3000` لرؤية وثائقك مباشرة!
+    
+    <Tip>تتحدث المعاينة تلقائيًا أثناء تحرير الملفات.</Tip>
+  </Accordion>
+</AccordionGroup>
+
+### الخطوة 2: نشر تغييراتك
+
+<AccordionGroup>
+  <Accordion icon="github" title="تثبيت تطبيق GitHub الخاص بنا">
+    ثبّت تطبيق Mintlify على GitHub من [لوحة التحكم](https://dashboard.mintlify.com/settings/organization/github-app).
+    
+    يقوم تطبيق GitHub الخاص بنا بنشر تغييراتك تلقائيًا إلى موقع التوثيق، لذلك لا تحتاج إلى إدارة عمليات النشر بنفسك.
+</Accordion>
+<Accordion icon="palette" title="تحديث اسم موقعك وألوانه">
+    لأول تغيير، دعنا نحدّث اسم وألوان موقع التوثيق الخاص بك.
+
+    1. افتح `docs.json` في محرّرك.
+    2. غيّر حقل `"name"` إلى اسم مشروعك.
+    3. حدّث `"colors"` لتتوافق مع علامتك التجارية.
+    4. احفظ وشاهد تغييراتك فورًا على `http://localhost:3000`.
+
+    <Tip>جرّب تغيير اللون الأساسي لترى الفرق فورًا!</Tip>
+  </Accordion>
+</AccordionGroup>
+
+### الخطوة 3: الانطلاق المباشر
+
+<Accordion icon="rocket" title="نشر وثائقك">
+  1. قم بعمل commit ودفع لتغييراتك.
+  2. ستُحدَّث وثائقك وستصبح مباشرة في لحظات!
+</Accordion>
+
+## الخطوات التالية
+
+الآن وقد أصبحت وثائقك تعمل، استكشف هذه الميزات الرئيسية:
+
+<CardGroup cols={2}>
+
+<Card title="كتابة المحتوى" icon="pen-to-square" href="/ar/essentials/markdown">
+  تعلّم بنية MDX وابدأ في كتابة وثائقك.
+</Card>
+
+<Card title="تخصيص النمط" icon="palette" href="/ar/essentials/settings">
+  اجعل وثائقك تتطابق مع علامتك التجارية بشكل مثالي.
+</Card>
+
+<Card title="إضافة أمثلة برمجية" icon="square-code" href="/ar/essentials/code">
+  ضمّن كتل كود مع تمييز للصياغة.
+</Card>
+
+<Card title="توثيق واجهة برمجة التطبيقات" icon="code" href="/ar/api-reference/introduction">
+  أنشئ وثائق API تلقائيًا من مواصفات OpenAPI.
+</Card>
+
+</CardGroup>
+
+<Note>
+  **تحتاج إلى مساعدة؟** راجع [الوثائق الكاملة](https://mintlify.com/docs) أو انضم إلى [مجتمعنا](https://mintlify.com/community).
+</Note>

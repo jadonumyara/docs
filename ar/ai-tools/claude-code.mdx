@@ -1,0 +1,43 @@
+---
+title: "إعداد Claude Code"
+description: "قم بإعداد Claude Code مع وثائق Mintlify الخاصة بك لصياغة صفحات جديدة، وإعادة هيكلة MDX، وأتمتة مهام التوثيق من سطر الأوامر."
+icon: "asterisk"
+---
+
+قم بإعداد Claude Code لمساعدتك في كتابة وصيانة وثائق Mintlify الخاصة بك.
+
+## المتطلبات الأساسية
+
+- اشتراك Claude نشط (Pro، Max، أو وصول API)
+
+## الإعداد
+
+<Steps>
+<Step title="تثبيت Claude Code">
+  ```bash
+  npm install -g @anthropic-ai/claude-code
+  ```
+</Step>
+
+<Step title="تثبيت مهارة Mintlify">
+  في دليل وثائقك، نفّذ:
+
+  ```bash
+  npx skills add https://mintlify.com/docs
+  ```
+
+  هذا يمنح Claude Code مرجع مكوّنات Mintlify ومعايير الكتابة
+  وإرشادات سير العمل.
+</Step>
+
+<Step title="تخصيص تعليمات المشروع">
+  حرّر `AGENTS.md` في جذر مشروعك لإضافة مصطلحات خاصة بالمشروع
+  وتفضيلات الأسلوب وحدود المحتوى.
+</Step>
+
+<Step title="ابدأ الكتابة باستخدام Claude Code">
+  ```bash
+  claude
+  ```
+</Step>
+</Steps>

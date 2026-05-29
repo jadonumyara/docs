@@ -1,0 +1,39 @@
+---
+title: 'كتل الكود'
+description: 'تنسيق الكود المضمّن، وكتل الكود المحاطة بعلامات، وتمييز الصياغة، وتمييز الأسطر، وأمثلة الكود المجمّعة بلغات متعددة في MDX.'
+icon: 'code'
+---
+
+## الكود المضمّن
+
+للإشارة إلى `كلمة` أو `عبارة` ككود، ضعها بين علامات الاقتباس الخلفية (`).
+
+```
+To denote a `word` or `phrase` as code, enclose it in backticks (`).
+```
+
+## كتل الكود
+
+استخدم [كتل الكود المحاطة بعلامات](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) عن طريق وضع الكود بين ثلاث علامات اقتباس خلفية واتباع العلامات الأولى باسم لغة البرمجة الخاصة بمقتطفك للحصول على تمييز للصياغة. اختياريًا، يمكنك أيضًا كتابة اسم الكود بعد لغة البرمجة.
+
+```java HelloWorld.java
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+````md
+```java HelloWorld.java
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+````
+
+## مجموعات الكود
+
+لعرض المقتطف نفسه بعدة لغات كعلامات تبويب، استخدم مكوّن `CodeGroup`. راجع [المكوّنات](/ar/essentials/components#code-groups) للاستخدام.

@@ -1,0 +1,33 @@
+---
+title: 'مقدمة مرجع API'
+description: 'نظرة عامة على مرجع API لمثال متجر النباتات، بما في ذلك المصادقة وعنوان URL الأساسي وكيفية إنشاء صفحات نقاط النهاية من مواصفات OpenAPI.'
+---
+
+<Note>
+  إذا كنت لا تتطلّع إلى إنشاء توثيق مرجع API، فيمكنك حذف
+  هذا القسم بإزالة مجلد api-reference.
+</Note>
+
+## مرحبًا
+
+هناك طريقتان لبناء توثيق API: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) و[مكوّنات MDX](https://mintlify.com/docs/api-playground/mdx/configuration). بالنسبة لمجموعة البدء، نستخدم مواصفات OpenAPI التالية.
+
+<Card
+  title="نقاط نهاية متجر النباتات"
+  icon="leaf"
+  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
+>
+  اعرض ملف مواصفات OpenAPI
+</Card>
+
+## المصادقة
+
+تتم مصادقة جميع نقاط نهاية API باستخدام رموز Bearer ويتم التقاطها من ملف المواصفات.
+
+```json
+"security": [
+  {
+    "bearerAuth": []
+  }
+]
+```
