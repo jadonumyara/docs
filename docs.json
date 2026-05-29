@@ -86,7 +86,58 @@
               {
                 "group": "البدء",
                 "pages": [
+                  "ar/index",
+                  "ar/quickstart",
+                  "ar/development",
                   "ar/oklou-concert-fomo"
+                ]
+              },
+              {
+                "group": "التخصيص",
+                "pages": [
+                  "ar/essentials/settings",
+                  "ar/essentials/navigation"
+                ]
+              },
+              {
+                "group": "كتابة المحتوى",
+                "pages": [
+                  "ar/essentials/markdown",
+                  "ar/essentials/code",
+                  "ar/essentials/images",
+                  "ar/essentials/components",
+                  "ar/essentials/reusable-snippets"
+                ]
+              },
+              {
+                "group": "جاهز للوكلاء",
+                "pages": [
+                  "ar/agent-ready/prompt",
+                  "ar/agent-ready/visibility",
+                  "ar/agent-ready/contextual",
+                  "ar/ai-tools/cursor",
+                  "ar/ai-tools/claude-code",
+                  "ar/ai-tools/windsurf"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "مرجع API",
+            "groups": [
+              {
+                "group": "توثيق API",
+                "pages": [
+                  "ar/api-reference/introduction"
+                ]
+              },
+              {
+                "group": "أمثلة نقاط النهاية",
+                "pages": [
+                  "ar/api-reference/endpoint/get",
+                  "ar/api-reference/endpoint/create",
+                  "ar/api-reference/endpoint/delete",
+                  "ar/api-reference/endpoint/webhook"
                 ]
               }
             ]

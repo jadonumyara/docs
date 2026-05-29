@@ -1,0 +1,75 @@
+---
+title: 'مكوّن Prompt'
+description: 'ضمّن مطالبات ذكاء اصطناعي قابلة للمشاركة في وثائقك حتى يتمكّن القرّاء من نسخها أو تشغيلها في ChatGPT أو Claude أو فتحها مباشرة في Cursor.'
+icon: 'robot'
+---
+
+يعرض مكوّن `Prompt` مطالبة ذكاء اصطناعي مُعدّة مسبقًا مع إجراءات بنقرة واحدة لنسخها إلى الحافظة أو فتحها مباشرة في Cursor. وهو مثالي لأي صفحة وثائق تريد فيها تقديم مطالبة جاهزة للاستخدام للقرّاء.
+
+## الاستخدام الأساسي
+
+<Prompt description="لخّص نقطة نهاية API هذه">
+You are a technical writer. Given the following API endpoint documentation, write a one-paragraph summary that explains what the endpoint does, what inputs it requires, and what it returns. Be concise and use plain language.
+</Prompt>
+
+```mdx
+<Prompt description="Summarize this API endpoint">
+You are a technical writer. Given the following API endpoint documentation,
+write a one-paragraph summary that explains what the endpoint does, what
+inputs it requires, and what it returns. Be concise and use plain language.
+</Prompt>
+```
+
+## مع تكامل Cursor
+
+أضف `actions={["copy", "cursor"]}` لإظهار زر "فتح في Cursor" أيضًا. هذا مفيد بشكل خاص للمطالبات التي سيستخدمها القرّاء في محرّرهم.
+
+<Prompt
+  description="إنشاء عميل API مكتوب الأنواع"
+  icon="code"
+  actions={["copy", "cursor"]}
+>
+You are an expert TypeScript developer. Given the following OpenAPI specification, generate a fully-typed API client using native fetch. Include:
+- A base client class with configurable baseUrl and auth headers
+- One method per endpoint, with typed request parameters and response types
+- JSDoc comments on each method
+Do not use any third-party HTTP libraries.
+</Prompt>
+
+```mdx
+<Prompt
+  description="Generate a typed API client"
+  icon="code"
+  actions={["copy", "cursor"]}
+>
+You are an expert TypeScript developer. Given the following OpenAPI
+specification, generate a fully-typed API client using native fetch...
+</Prompt>
+```
+
+## الخصائص (Props)
+
+<ResponseField name="description" type="string" required>
+  نص العنوان المعروض فوق محتوى المطالبة. يدعم Markdown.
+</ResponseField>
+
+<ResponseField name="children" type="string" required>
+  نص المطالبة الذي يتم نسخه أو إرساله إلى Cursor.
+</ResponseField>
+
+<ResponseField name="actions" type="array">
+  أزرار الإجراءات التي يجب عرضها. الخيارات: `"copy"`، `"cursor"`. القيمة الافتراضية هي `["copy"]`.
+</ResponseField>
+
+<ResponseField name="icon" type="string">
+  أيقونة معروضة بجانب الوصف. تدعم أسماء أيقونات Font Awesome وLucide وTabler، أو روابط الصور، أو SVG المضمّن.
+</ResponseField>
+
+## متى تستخدمه
+
+يعمل مكوّن `Prompt` بشكل جيد في أي مكان تعلّم فيه القرّاء العمل مع الذكاء الاصطناعي:
+
+- **أدلة البدء السريع** — امنح القرّاء مطالبة لإنشاء أوّل تكامل لهم
+- **صفحات مرجع API** — ضمّن مطالبة لإنشاء كود العميل من المواصفات
+- **أدلة استكشاف الأخطاء وإصلاحها** — ضمّن مطالبة تصحيح يمكن للقرّاء تشغيلها على سجلات الأخطاء الخاصة بهم
+- **الصفحات المفاهيمية** — أضف مطالبة لاستكشاف الموضوع بشكل أعمق مع مساعد ذكاء اصطناعي
