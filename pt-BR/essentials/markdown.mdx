@@ -1,0 +1,88 @@
+---
+title: 'Sintaxe Markdown'
+description: 'Use Markdown padrão para títulos, parágrafos, listas, links, citações e formatação inline, além das extensões específicas da Mintlify para páginas mais ricas.'
+icon: 'text-size'
+---
+
+## Títulos
+
+Mais usados para cabeçalhos de seção.
+
+```md
+## Titles
+```
+
+### Subtítulos
+
+Mais usados para cabeçalhos de subseção.
+
+```md
+### Subtitles
+```
+
+<Tip>
+
+Cada **título** e **subtítulo** cria uma âncora e também aparece no sumário à direita.
+
+</Tip>
+
+## Formatação de texto
+
+Suportamos a maior parte da formatação Markdown. Basta adicionar `**`, `_` ou `~` em volta do texto para formatá-lo.
+
+| Estilo        | Como escrever     | Resultado       |
+| ------------- | ----------------- | --------------- |
+| Negrito       | `**bold**`        | **bold**        |
+| Itálico       | `_italic_`        | _italic_        |
+| Tachado       | `~strikethrough~` | ~strikethrough~ |
+
+Você pode combinar esses estilos. Por exemplo, escreva `**_bold and italic_**` para obter texto **_em negrito e itálico_**.
+
+Você precisa usar HTML para escrever texto sobrescrito e subscrito. Ou seja, adicione `<sup>` ou `<sub>` em volta do texto.
+
+| Tamanho     | Como escrever            | Resultado              |
+| ----------- | ------------------------ | ---------------------- |
+| Sobrescrito | `<sup>superscript</sup>` | <sup>superscript</sup> |
+| Subscrito   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+
+## Linkando para páginas
+
+Você adiciona um link envolvendo o texto com `[]()`. Você escreveria `[link to google](https://google.com)` para [link to google](https://google.com).
+
+Links para páginas dentro da sua documentação devem ser relativos à raiz. Em resumo, inclua o caminho completo da pasta. Por exemplo, `[link to text](/writing-content/text)` aponta para a página "Text" na nossa seção de componentes.
+
+Links relativos como `[link to text](../text)` abrem mais lentamente porque não conseguimos otimizá-los com a mesma facilidade.
+
+## Citações
+
+### Linha única
+
+Para criar uma citação, adicione `>` na frente de um parágrafo.
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+
+```md
+> Dorothy followed her through many of the beautiful rooms in her castle.
+```
+
+### Múltiplas linhas
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+
+```md
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+```
+
+### LaTeX
+
+A Mintlify oferece suporte a [LaTeX](https://www.latex-project.org) por meio do componente Latex.
+
+<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+
+```md
+<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+```

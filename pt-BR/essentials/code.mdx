@@ -1,0 +1,39 @@
+---
+title: 'Blocos de código'
+description: 'Formate código inline, blocos de código demarcados, destaque de sintaxe, destaque de linhas e exemplos de código agrupados em várias linguagens no MDX.'
+icon: 'code'
+---
+
+## Código inline
+
+Para marcar uma `palavra` ou `frase` como código, envolva-a em crases (`).
+
+```
+To denote a `word` or `phrase` as code, enclose it in backticks (`).
+```
+
+## Blocos de código
+
+Use [blocos de código demarcados](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) envolvendo o código em três crases e indique, após as crases iniciais, a linguagem de programação do seu snippet para obter destaque de sintaxe. Opcionalmente, você também pode escrever o nome do seu código depois da linguagem.
+
+```java HelloWorld.java
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+````md
+```java HelloWorld.java
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+````
+
+## Grupos de código
+
+Para exibir o mesmo snippet em várias linguagens como abas, use o componente `CodeGroup`. Veja [Componentes](/essentials/components#code-groups) para saber como usar.

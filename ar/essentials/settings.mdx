@@ -1,0 +1,174 @@
+---
+title: 'تكوين الموقع عبر docs.json'
+description: 'خصّص موقع Mintlify من خلال ملف docs.json، بما في ذلك السمة والألوان والشعار والتنقل وعمليات التكامل والإعدادات الافتراضية لبيانات التعريف العالمية.'
+icon: 'gear'
+---
+
+يتم تكوين كل موقع Mintlify عبر ملف `docs.json` في جذر المشروع. تُطبَّق التغييرات فورًا في المعاينة المحلية.
+
+## الهوية
+
+عيّن الاسم والسمة والهوية البصرية لموقعك.
+
+```json docs.json
+{
+  "name": "Acme Docs",
+  "theme": "mint",
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  }
+}
+```
+
+<ResponseField name="name" type="string" required>
+  اسم مشروعك. يظهر في عنوان علامة تبويب المتصفح وبيانات التعريف للموقع.
+</ResponseField>
+
+<ResponseField name="theme" type="string">
+  السمة المرئية. الخيارات: `mint`، `maple`، `willow`، `sequoia`، `prism`.
+</ResponseField>
+
+<ResponseField name="favicon" type="string">
+  مسار أيقونة الموقع. يُوصى باستخدام SVG لعرض حاد بجميع الأحجام.
+</ResponseField>
+
+<ResponseField name="logo" type="object">
+  <Expandable title="Logo">
+    <ResponseField name="light" type="string">الشعار المعروض في الوضع الفاتح.</ResponseField>
+    <ResponseField name="dark" type="string">الشعار المعروض في الوضع الداكن.</ResponseField>
+    <ResponseField name="href" type="string" default="/">عنوان URL الذي يربط إليه الشعار.</ResponseField>
+  </Expandable>
+</ResponseField>
+
+## الألوان
+
+```json docs.json
+{
+  "colors": {
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
+  }
+}
+```
+
+<ResponseField name="colors.primary" type="string" required>
+  لون العلامة التجارية الأساسي. يُستخدم في التظليلات والحالات النشطة والتأكيدات في الوضع الفاتح.
+</ResponseField>
+
+<ResponseField name="colors.light" type="string">
+  اللون الأساسي للوضع الداكن.
+</ResponseField>
+
+<ResponseField name="colors.dark" type="string">
+  يُستخدم للأزرار والعناصر التفاعلية المهمة.
+</ResponseField>
+
+<ResponseField name="colors.background" type="object">
+  تجاوز لون خلفية الصفحة الافتراضي.
+  <Expandable title="Background">
+    <ResponseField name="light" type="string">لون خلفية ست عشري في الوضع الفاتح.</ResponseField>
+    <ResponseField name="dark" type="string">لون خلفية ست عشري في الوضع الداكن.</ResponseField>
+  </Expandable>
+</ResponseField>
+
+## شريط التنقل
+
+اضبط روابط شريط التنقل العلوي ودعوة العمل الأساسية.
+
+```json docs.json
+{
+  "navbar": {
+    "links": [
+      { "label": "Support", "href": "mailto:support@example.com" }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://dashboard.example.com"
+    }
+  }
+}
+```
+
+<ResponseField name="navbar.links" type="array">
+  روابط نصية تُعرض في شريط التنقل العلوي.
+  <Expandable title="Link">
+    <ResponseField name="label" type="string">النص المعروض للرابط.</ResponseField>
+    <ResponseField name="href" type="string">عنوان URL الذي يشير إليه الرابط.</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="navbar.primary" type="object">
+  دعوة العمل البارزة في الزاوية العلوية اليمنى.
+  <Expandable title="Primary">
+    <ResponseField name="type" type='"button" | "github"'>
+      `button` يعرض زر دعوة عمل. `github` يعرض شارة عدد النجوم.
+    </ResponseField>
+    <ResponseField name="label" type="string">عنوان الزر. مطلوب عندما يكون النوع `button`.</ResponseField>
+    <ResponseField name="href" type="string">عنوان URL الذي يربط إليه الزر أو الشارة.</ResponseField>
+  </Expandable>
+</ResponseField>
+
+## التنقل
+
+نظّم صفحاتك في علامات تبويب ومجموعات. راجع دليل [التنقل](/essentials/navigation) لمزيد من التفاصيل.
+
+```json docs.json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": ["index", "quickstart"]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Blog",
+          "href": "https://example.com/blog",
+          "icon": "newspaper"
+        }
+      ]
+    }
+  }
+}
+```
+
+## شريط الأدوات السياقي
+
+يطفو شريط الأدوات السياقي على كل صفحة ويمنح القرّاء وصولًا بنقرة واحدة إلى أدوات الذكاء الاصطناعي وعمليات التكامل. راجع [شريط الأدوات السياقي](/agent-ready/contextual) للاطلاع على القائمة الكاملة من الخيارات.
+
+```json docs.json
+{
+  "contextual": {
+    "options": ["copy", "view", "claude", "mcp", "cursor", "vscode"]
+  }
+}
+```
+
+## التذييل
+
+```json docs.json
+{
+  "footer": {
+    "socials": {
+      "x": "https://x.com/yourhandle",
+      "github": "https://github.com/yourorg",
+      "linkedin": "https://linkedin.com/company/yourco"
+    }
+  }
+}
+```
+
+<ResponseField name="footer.socials" type="object">
+  روابط وسائل التواصل الاجتماعي المعروضة في التذييل. المفاتيح المدعومة: `x`، `github`، `linkedin`، `discord`، `slack`، `facebook`، `instagram`، `website`.
+</ResponseField>

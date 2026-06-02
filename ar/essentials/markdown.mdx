@@ -1,0 +1,88 @@
+---
+title: 'بنية Markdown'
+description: 'استخدم Markdown القياسي للعناوين والفقرات والقوائم والروابط والاقتباسات والتنسيق المضمّن، بالإضافة إلى امتدادات Mintlify المخصّصة لصفحات أكثر ثراءً.'
+icon: 'text-size'
+---
+
+## العناوين
+
+تُستخدم أفضل ما يكون لرؤوس الأقسام.
+
+```md
+## Titles
+```
+
+### العناوين الفرعية
+
+تُستخدم أفضل ما يكون لرؤوس الأقسام الفرعية.
+
+```md
+### Subtitles
+```
+
+<Tip>
+
+كل **عنوان** و**عنوان فرعي** يُنشئ مرسى ويظهر أيضًا في جدول المحتويات على اليمين.
+
+</Tip>
+
+## تنسيق النص
+
+ندعم معظم تنسيقات markdown. ما عليك سوى إضافة `**` أو `_` أو `~` حول النص لتنسيقه.
+
+| النمط         | كيفية كتابته    | النتيجة         |
+| ------------- | ----------------- | --------------- |
+| غامق          | `**bold**`        | **bold**        |
+| مائل          | `_italic_`        | _italic_        |
+| يتوسطه خط     | `~strikethrough~` | ~strikethrough~ |
+
+يمكنك دمج هذه التنسيقات. على سبيل المثال، اكتب `**_bold and italic_**` للحصول على نص **_غامق ومائل_**.
+
+تحتاج إلى استخدام HTML لكتابة النص المرتفع أو المنخفض. وذلك بإضافة `<sup>` أو `<sub>` حول نصك.
+
+| حجم النص   | كيفية كتابته          | النتيجة                 |
+| ----------- | ------------------------ | ---------------------- |
+| مرتفع | `<sup>superscript</sup>` | <sup>superscript</sup> |
+| منخفض   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+
+## الارتباط بالصفحات
+
+يمكنك إضافة رابط بتغليف النص بـ `[]()`. ستكتب `[link to google](https://google.com)` لـ [link to google](https://google.com).
+
+يجب أن تكون روابط الصفحات داخل وثائقك جذرية النسبة. أي أنه يجب تضمين مسار المجلد بالكامل. على سبيل المثال، `[link to text](/writing-content/text)` يربط بصفحة "Text" في قسم المكوّنات لدينا.
+
+الروابط النسبية مثل `[link to text](../text)` ستفتح بشكل أبطأ لأننا لا نستطيع تحسينها بسهولة.
+
+## الاقتباسات
+
+### سطر واحد
+
+لإنشاء اقتباس، أضف `>` أمام الفقرة.
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+
+```md
+> Dorothy followed her through many of the beautiful rooms in her castle.
+```
+
+### متعدد الأسطر
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+
+```md
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+```
+
+### LaTeX
+
+يدعم Mintlify [LaTeX](https://www.latex-project.org) من خلال مكوّن Latex.
+
+<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+
+```md
+<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+```

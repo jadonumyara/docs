@@ -1,0 +1,87 @@
+---
+title: 'التنقل'
+description: 'اضبط قائمة التنقل في docs.json لتنظيم الصفحات في مجموعات وعلامات تبويب ومراسٍ، وللتحكم في ترتيب الشريط الجانبي عبر وثائقك.'
+icon: 'map'
+---
+
+قائمة التنقل هي قائمة الروابط الموجودة في كل موقع.
+
+من المرجح أن تُحدّث `docs.json` في كل مرة تضيف فيها صفحة جديدة. لا تظهر الصفحات تلقائيًا.
+
+## بنية التنقل
+
+بنية التنقل لدينا متكررة، ما يعني أنه يمكنك إنشاء مجموعات تنقل متداخلة. لست بحاجة إلى تضمين `.mdx` في أسماء الصفحات.
+
+<CodeGroup>
+
+```json Regular Navigation
+"navigation": {
+  "tabs": [
+    {
+      "tab": "Docs",
+      "groups": [
+        {
+          "group": "Getting Started",
+          "pages": ["quickstart"]
+        }
+      ]
+    }
+  ]
+}
+```
+
+```json Nested Navigation
+"navigation": {
+  "tabs": [
+    {
+      "tab": "Docs",
+      "groups": [
+        {
+          "group": "Getting Started",
+          "pages": [
+            "quickstart",
+            {
+              "group": "Nested Reference Pages",
+              "pages": ["nested-reference-page"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+</CodeGroup>
+
+## المجلدات
+
+ضع ملفات MDX الخاصة بك في مجلدات وحدّث المسارات في `docs.json`.
+
+على سبيل المثال، للحصول على صفحة على `https://yoursite.com/your-folder/your-page`، أنشئ مجلدًا باسم `your-folder` يحتوي على ملف MDX باسم `your-page.mdx`.
+
+<Warning>
+
+لا يمكنك استخدام `api` كاسم لمجلد إلا إذا كان متداخلاً داخل مجلد آخر. يستخدم Mintlify إطار Next.js الذي يحجز المجلد `api` على المستوى الأعلى للاستدعاءات الداخلية للخادم. اسم مجلد مثل `api-reference` سيكون مقبولًا.
+
+</Warning>
+
+```json Navigation With Folder
+"navigation": {
+  "tabs": [
+    {
+      "tab": "Docs",
+      "groups": [
+        {
+          "group": "Group Name",
+          "pages": ["your-folder/your-page"]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## الصفحات المخفية
+
+ملفات MDX غير المضمّنة في `docs.json` لن تظهر في الشريط الجانبي، لكنها متاحة عبر شريط البحث والارتباط المباشر بها.
