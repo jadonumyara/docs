@@ -1,0 +1,39 @@
+---
+title: 'كتل التعليمات البرمجية'
+description: 'نسّق التعليمات البرمجية المضمّنة، وكتل التعليمات البرمجية المحاطة، وتمييز الصياغة، وتمييز الأسطر، وأمثلة التعليمات البرمجية المجمّعة عبر لغات متعددة في MDX.'
+icon: 'code'
+---
+
+## التعليمات البرمجية المضمّنة
+
+للإشارة إلى `كلمة` أو `عبارة` كرمز، أحطها بعلامات اقتباس عكسية (`).
+
+```
+To denote a `word` or `phrase` as code, enclose it in backticks (`).
+```
+
+## كتل التعليمات البرمجية
+
+استخدم [كتل التعليمات البرمجية المحاطة](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) بإحاطة الكود بثلاث علامات اقتباس عكسية، واتبع العلامات الافتتاحية باسم لغة البرمجة الخاصة بمقتطفك للحصول على تمييز الصياغة. اختياريًا، يمكنك كتابة اسم الكود بعد لغة البرمجة.
+
+```java HelloWorld.java
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+````md
+```java HelloWorld.java
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+````
+
+## مجموعات التعليمات البرمجية
+
+لعرض نفس المقتطف بلغات متعددة كعلامات تبويب، استخدم مكوّن `CodeGroup`. راجع [المكوّنات](/essentials/components#code-groups) للاستخدام.

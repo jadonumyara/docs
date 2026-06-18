@@ -1,0 +1,85 @@
+---
+title: 'Visibilidade de conteúdo para humanos e agentes de IA'
+description: 'Controle quais seções da sua documentação são visíveis para leitores humanos versus agentes de IA e crawlers usando configurações de visibilidade no MDX.'
+icon: 'eye'
+---
+
+O componente `Visibility` permite que uma única página atenda a dois públicos: humanos lendo na web e agentes de IA processando a saída em Markdown. Conteúdo marcado com `for="humans"` aparece na página renderizada, mas é excluído das exportações em Markdown. Conteúdo marcado com `for="agents"` fica oculto na web, mas é incluído no Markdown.
+
+Isso significa que você pode escrever instruções conversacionais e focadas na interface para humanos e instruções estruturadas, legíveis por máquina, para a IA — sem precisar manter duas páginas separadas.
+
+## Como funciona
+
+A Mintlify serve cada página em duas URLs:
+
+- `https://docs.example.com/page` — o site renderizado, para humanos
+- `https://docs.example.com/page.md` — o Markdown bruto, para agentes de IA
+
+O `Visibility` controla o que aparece em cada URL.
+
+## Exemplo
+
+```mdx
+<Visibility for="humans">
+  <Steps>
+    <Step title="Open the dashboard">
+      Navigate to [dashboard.example.com](https://dashboard.example.com) and sign in.
+    </Step>
+    <Step title="Create an API key">
+      Go to **Settings → API Keys** and click **New key**.
+    </Step>
+  </Steps>
+</Visibility>
+
+<Visibility for="agents">
+  To authenticate, send a POST request to `/v1/auth/token` with the user's
+  email and password in the request body. The response includes a bearer token
+  valid for 24 hours. Pass this token as `Authorization: Bearer <token>` on
+  all subsequent requests.
+</Visibility>
+```
+
+Leitores humanos veem o passo a passo na interface. Agentes de IA processando o Markdown recebem as instruções diretas de API.
+
+## Props
+
+<ResponseField name="for" type='"humans" | "agents"' required>
+  - `"humans"` — visível na página web renderizada, excluído da exportação `.md`
+  - `"agents"` — oculto na página web renderizada, incluído na exportação `.md`
+</ResponseField>
+
+## Quando usar
+
+<Columns cols={2}>
+  <Card title="Fluxos de onboarding" icon="person-walking-arrow-right">
+    Mostre capturas de tela da UI e cliques de botão para humanos. Dê aos agentes as chamadas de API equivalentes.
+  </Card>
+  <Card title="Guias de configuração" icon="sliders">
+    Mostre um painel visual de configurações para humanos. Dê aos agentes o JSON ou as flags de CLI equivalentes.
+  </Card>
+  <Card title="Mensagens de erro" icon="triangle-exclamation">
+    Mostre uma explicação amigável para humanos. Dê aos agentes códigos de erro estruturados e passos de resolução.
+  </Card>
+  <Card title="Páginas conceituais" icon="lightbulb">
+    Inclua diagramas ricos e narrativa para humanos. Forneça um resumo conciso e estruturado para agentes.
+  </Card>
+</Columns>
+
+## Combinando com Prompt
+
+`Visibility` e `Prompt` se complementam bem. Use `Visibility` para dar aos agentes contexto estruturado, e use `Prompt` para dar aos leitores humanos um prompt que eles podem usar para perguntar a uma IA sobre esse mesmo conteúdo.
+
+```mdx
+<Visibility for="agents">
+  ## Authentication schema
+  - Method: Bearer token
+  - Header: `Authorization: Bearer <token>`
+  - Token TTL: 86400 seconds
+  - Refresh endpoint: POST /v1/auth/refresh
+</Visibility>
+
+<Prompt description="Ask about authentication" icon="lock">
+  Explain how authentication works in this API and show me example code for
+  getting a token and making an authenticated request.
+</Prompt>
+```

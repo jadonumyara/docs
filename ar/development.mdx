@@ -1,0 +1,95 @@
+---
+title: 'التطوير والمعاينة المحلية'
+description: 'ثبّت Mintlify CLI لمعاينة وثائقك محليًا، واكتشف الروابط المعطوبة، وتحقّق من صحة التغييرات قبل دفعها إلى الإنتاج.'
+icon: 'terminal'
+---
+
+<Info>
+  **المتطلبات الأساسية**:
+  - Node.js الإصدار 19 أو أعلى
+  - مستودع وثائق يحتوي على ملف `docs.json`
+</Info>
+
+اتبع هذه الخطوات لتثبيت Mintlify وتشغيله على نظام التشغيل الخاص بك.
+
+<Steps>
+<Step title="ثبّت Mintlify CLI">
+
+```bash
+npm i -g mint
+```
+</Step>
+
+<Step title="عاين محليًا">
+
+انتقل إلى دليل الوثائق الذي يوجد فيه ملف `docs.json` ونفّذ الأمر التالي:
+
+```bash
+mint dev
+```
+
+ستتوفر معاينة محلية لوثائقك على `http://localhost:3000`.
+
+</Step>
+</Steps>
+
+## المنافذ المخصّصة
+
+افتراضيًا، يستخدم Mintlify المنفذ 3000. يمكنك تخصيص المنفذ الذي يعمل عليه Mintlify باستخدام العلامة `--port`. على سبيل المثال، لتشغيل Mintlify على المنفذ 3333، استخدم هذا الأمر:
+
+```bash
+mint dev --port 3333
+```
+
+إذا حاولت تشغيل Mintlify على منفذ مستخدم بالفعل، فسيستخدم المنفذ التالي المتاح:
+
+```md
+Port 3000 is already in use. Trying 3001 instead.
+```
+
+## إصدارات Mintlify
+
+يرجى ملاحظة أن كل إصدار من CLI مرتبط بإصدار محدد من Mintlify. إذا لم تتطابق معاينتك المحلية مع إصدار الإنتاج، فيرجى تحديث CLI:
+
+```bash
+npm mint update
+```
+
+## التحقق من الروابط
+
+يمكن لـ CLI المساعدة في التحقق من الروابط في وثائقك. لتحديد أي روابط معطوبة، استخدم الأمر التالي:
+
+```bash
+mint broken-links
+```
+
+## النشر
+
+إذا نجح النشر، يجب أن ترى ما يلي:
+
+<Frame>
+  <img src="/images/checks-passed.png" alt="لقطة شاشة لرسالة تأكيد النشر تفيد بأنه تم اجتياز جميع عمليات التحقق." style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## تنسيق الكود
+
+نقترح استخدام إضافات في بيئة التطوير المتكاملة (IDE) للتعرف على MDX وتنسيقه. إن كنت من مستخدمي VSCode، فجرّب [إضافة MDX لـ VSCode](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) لتمييز الصياغة، و[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) لتنسيق الكود.
+
+## استكشاف الأخطاء وإصلاحها
+
+<AccordionGroup>
+  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
+
+    قد يحدث هذا بسبب إصدار قديم من node. جرّب ما يلي:
+    1. أزل الإصدار المثبّت حاليًا من CLI: `npm remove -g mint`
+    2. قم بالترقية إلى Node v19 أو أعلى.
+    3. أعد تثبيت CLI: `npm i -g mint`
+  </Accordion>
+
+  <Accordion title="Issue: Encountering an unknown error">
+  
+    الحل: انتقل إلى جذر جهازك واحذف مجلد `~/.mintlify`. ثم نفّذ `mint dev` مرة أخرى.
+  </Accordion>
+</AccordionGroup>
+
+هل تتساءل عن آخر التغييرات في إصدار CLI؟ راجع [سجل تغييرات CLI](https://www.npmjs.com/package/mintlify?activeTab=versions).

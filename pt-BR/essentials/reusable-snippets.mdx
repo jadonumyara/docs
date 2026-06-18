@@ -1,0 +1,100 @@
+---
+title: "Snippets reutilizáveis"
+description: "Crie snippets MDX reutilizáveis para compartilhar textos, componentes e variáveis entre páginas, atualizando conteúdos compartilhados a partir de um único arquivo de origem."
+icon: "recycle"
+---
+
+Qualquer conteúdo que você se pegue repetindo entre páginas é um bom candidato a virar um snippet. Crie o arquivo uma única vez no diretório `snippets/`, importe-o onde precisar e as atualizações se propagam automaticamente em todos os lugares.
+
+<Note>
+  Os arquivos dentro de `snippets/` não são renderizados como páginas independentes. Eles aparecem apenas onde você os importa.
+</Note>
+
+## Snippets de conteúdo
+
+O padrão mais simples: escreva conteúdo MDX em um arquivo de snippet e importe-o como um componente.
+
+```mdx snippets/prerequisites.mdx
+Before you begin, make sure you have:
+- Node.js 18 or higher
+- An API key from your [dashboard](https://dashboard.example.com)
+```
+
+Importe-o para qualquer página usando um caminho relativo à raiz:
+
+```mdx your-page.mdx
+---
+title: Install the SDK
+---
+
+import Prerequisites from '/snippets/prerequisites.mdx';
+
+<Prerequisites />
+
+## Installation
+...
+```
+
+Você também pode usar imports relativos, o que permite navegar até o snippet no seu editor com CMD+click:
+
+```mdx
+import Prerequisites from '../snippets/prerequisites.mdx';
+```
+
+## Snippets de variáveis
+
+Exporte constantes nomeadas de um arquivo de snippet para reutilizar valores como nomes de produtos, números de versão ou URLs.
+
+```mdx snippets/vars.mdx
+export const sdkVersion = '3.2.0';
+export const baseUrl = 'https://api.example.com/v1';
+```
+
+Importe e use-os inline:
+
+```mdx your-page.mdx
+import { sdkVersion, baseUrl } from '/snippets/vars.mdx';
+
+The current SDK version is **{sdkVersion}**.
+
+All requests go to `{baseUrl}`.
+```
+
+## Snippets de componente
+
+Para snippets que precisam variar conforme o lugar onde são usados, exporte um componente em arrow function que aceite props.
+
+```mdx snippets/endpoint-note.mdx
+export const EndpointNote = ({ method, path }) => (
+  <Note>
+    This guide covers the <code>{method} {path}</code> endpoint.
+    See the <a href="/api-reference/introduction">API reference</a> for full details.
+  </Note>
+);
+```
+
+* Use a sintaxe de arrow function (`const Foo = () => ...`).
+* A palavra-chave `function` não é suportada em arquivos de snippet.
+* A sintaxe MDX não é compilada dentro do corpo de arrow functions. Use tags HTML simples ali, ou use um export default.
+
+Passe as props quando renderizar:
+
+```mdx your-page.mdx
+import { EndpointNote } from '/snippets/endpoint-note.mdx';
+
+<EndpointNote method="POST" path="/v1/users" />
+```
+
+## Snippets que importam snippets
+
+Snippets podem importar outros snippets, o que é útil para compor seções compartilhadas maiores a partir de pedaços menores.
+
+```mdx snippets/auth-intro.mdx
+import AuthNote from '/snippets/auth-note.mdx';
+
+## Authentication
+
+All endpoints require a bearer token.
+
+<AuthNote />
+```

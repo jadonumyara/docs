@@ -1,0 +1,85 @@
+---
+title: 'رؤية المحتوى للبشر ووكلاء الذكاء الاصطناعي'
+description: 'تحكّم في الأقسام التي تكون مرئية لقرّاء البشر مقابل وكلاء الذكاء الاصطناعي والزحّافات باستخدام إعدادات الرؤية في MDX.'
+icon: 'eye'
+---
+
+يتيح مكوّن `Visibility` لصفحة واحدة خدمة جمهورين: البشر الذين يقرأون على الويب ووكلاء الذكاء الاصطناعي الذين يعالجون مخرجات Markdown. المحتوى المعلَّم بـ `for="humans"` يظهر على الصفحة المعروضة لكنه مُستبعَد من تصدير Markdown. المحتوى المعلَّم بـ `for="agents"` يكون مخفيًا على الويب لكنه مُضمَّن في Markdown.
+
+هذا يعني أنه يمكنك كتابة تعليمات حوارية ومرتكزة على واجهة المستخدم للبشر، وتعليمات منظّمة قابلة للقراءة الآلية للذكاء الاصطناعي — دون الحاجة إلى الحفاظ على صفحتين منفصلتين.
+
+## كيف يعمل
+
+يخدم Mintlify كل صفحة على عنواني URL:
+
+- `https://docs.example.com/page` — الموقع المعروض، للبشر
+- `https://docs.example.com/page.md` — Markdown الخام، لوكلاء الذكاء الاصطناعي
+
+يتحكم `Visibility` فيما يظهر على كل عنوان URL.
+
+## مثال
+
+```mdx
+<Visibility for="humans">
+  <Steps>
+    <Step title="Open the dashboard">
+      Navigate to [dashboard.example.com](https://dashboard.example.com) and sign in.
+    </Step>
+    <Step title="Create an API key">
+      Go to **Settings → API Keys** and click **New key**.
+    </Step>
+  </Steps>
+</Visibility>
+
+<Visibility for="agents">
+  To authenticate, send a POST request to `/v1/auth/token` with the user's
+  email and password in the request body. The response includes a bearer token
+  valid for 24 hours. Pass this token as `Authorization: Bearer <token>` on
+  all subsequent requests.
+</Visibility>
+```
+
+يرى القرّاء البشر إرشادات واجهة المستخدم خطوة بخطوة. ويحصل وكلاء الذكاء الاصطناعي الذين يعالجون Markdown على تعليمات API المباشرة بدلاً من ذلك.
+
+## Props
+
+<ResponseField name="for" type='"humans" | "agents"' required>
+  - `"humans"` — مرئي على صفحة الويب المعروضة، مُستبعَد من تصدير `.md`
+  - `"agents"` — مخفي على صفحة الويب المعروضة، مُضمَّن في تصدير `.md`
+</ResponseField>
+
+## متى تستخدمه
+
+<Columns cols={2}>
+  <Card title="تدفقات التهيئة الأولية" icon="person-walking-arrow-right">
+    اعرض لقطات شاشة لواجهة المستخدم ونقرات الأزرار للبشر. أعطِ الوكلاء استدعاءات API المكافئة.
+  </Card>
+  <Card title="أدلة التكوين" icon="sliders">
+    اعرض لوحة إعدادات مرئية للبشر. أعطِ الوكلاء JSON أو علامات CLI المكافئة.
+  </Card>
+  <Card title="رسائل الخطأ" icon="triangle-exclamation">
+    اعرض تفسيرًا وديًا للبشر. أعطِ الوكلاء رموز خطأ منظّمة وخطوات معالجة.
+  </Card>
+  <Card title="الصفحات المفاهيمية" icon="lightbulb">
+    قدّم رسومًا توضيحية ثرية وسردًا للبشر. قدّم ملخصًا منظّمًا وموجزًا للوكلاء.
+  </Card>
+</Columns>
+
+## الدمج مع Prompt
+
+يكمل `Visibility` و`Prompt` بعضهما البعض بشكل جيد. استخدم `Visibility` لإعطاء الوكلاء سياقًا منظّمًا، ثم استخدم `Prompt` لإعطاء القرّاء البشر مطالبة يمكنهم استخدامها لسؤال الذكاء الاصطناعي عن المحتوى نفسه.
+
+```mdx
+<Visibility for="agents">
+  ## Authentication schema
+  - Method: Bearer token
+  - Header: `Authorization: Bearer <token>`
+  - Token TTL: 86400 seconds
+  - Refresh endpoint: POST /v1/auth/refresh
+</Visibility>
+
+<Prompt description="Ask about authentication" icon="lock">
+  Explain how authentication works in this API and show me example code for
+  getting a token and making an authenticated request.
+</Prompt>
+```

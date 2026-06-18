@@ -1,0 +1,59 @@
+---
+title: 'Imagens e incorporações'
+description: 'Incorpore imagens, vídeos, iframes e outros elementos HTML nas páginas da sua documentação, com orientações sobre dimensionamento, texto alternativo e ativos para modo escuro.'
+icon: 'image'
+---
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="https://mintlify-assets.b-cdn.net/bigbend.jpg"
+/>
+
+## Imagem
+
+### Usando Markdown
+
+A [sintaxe markdown](https://www.markdownguide.org/basic-syntax/#images) permite adicionar imagens usando o seguinte código:
+
+```md
+![title](/path/image.jpg)
+```
+
+Observe que o tamanho do arquivo de imagem deve ser inferior a 5MB. Caso contrário, recomendamos hospedar em um serviço como [Cloudinary](https://cloudinary.com/) ou [S3](https://aws.amazon.com/s3/). Você pode então usar a URL e incorporá-la.
+
+### Usando incorporações
+
+Para ter mais possibilidades de personalização com imagens, você também pode usar [incorporações](#embeds-and-html-elements) para adicioná-las:
+
+```html
+<img height="200" src="/path/image.jpg" />
+```
+
+## Incorporações e elementos HTML
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/4KzFe50RQkQ"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+  style={{ width: '100%', borderRadius: '0.5rem' }}
+></iframe>
+
+<br />
+
+<Tip>
+
+A Mintlify oferece suporte a [tags HTML em Markdown](https://www.markdownguide.org/basic-syntax/#html). Isso é útil se você prefere tags HTML à sintaxe Markdown e permite criar documentação com flexibilidade infinita.
+
+</Tip>
+
+### iFrames
+
+Carrega outra página HTML dentro do documento. Mais comumente usado para incorporar vídeos.
+
+```html
+<iframe src="https://www.youtube.com/embed/4KzFe50RQkQ"> </iframe>
+```
