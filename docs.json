@@ -76,22 +76,6 @@
             ]
           }
         ]
-      },
-      {
-        "language": "ar",
-        "tabs": [
-          {
-            "tab": "الأدلة",
-            "groups": [
-              {
-                "group": "البدء",
-                "pages": [
-                  "ar/oklou-concert-fomo"
-                ]
-              }
-            ]
-          }
-        ]
       }
     ],
     "global": {
